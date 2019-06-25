@@ -133,7 +133,7 @@ namespace Kontur.LogPacker.SelfCheck
 
             var gzipRatePct = gzipLength * 100 / originalLength;
             var solutionRatePct = solutionLength * 100 / originalLength;
-
+            
             Console.WriteLine($"File sizes: {gzipLength} bytes ({gzipRatePct:f2}%) - gzip, {solutionLength} bytes ({solutionRatePct:f2}%) - solution");
             if (gzipRatePct - solutionRatePct < 1)
                 throw new Exception("The compression rate of the tested solution should be at least 1 percent point better than the compression rate of GZip!");
@@ -153,7 +153,7 @@ namespace Kontur.LogPacker.SelfCheck
 
         private void Should_correctly_handle_random_binary_data()
         {
-            var bytes = new byte[1024 * 1024];
+            var bytes = new byte[1024 * 1024 ];
             new Random().NextBytes(bytes);
             File.WriteAllBytes(UncompressedFile, bytes);
             

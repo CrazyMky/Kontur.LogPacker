@@ -13,10 +13,15 @@ namespace Kontur.LogPackerGZip
             if (args.Length == 2)
             {
                 var (inputFile, outputFile) = (args[0], args[1]);
-                
                 if (File.Exists(inputFile))
                 {
+                    System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+                    stopwatch.Start();
+
                     Compress(inputFile, outputFile);
+
+                    stopwatch.Stop();
+                    Console.WriteLine(stopwatch.ElapsedMilliseconds);
                     return;
                 }
             }
@@ -24,14 +29,19 @@ namespace Kontur.LogPackerGZip
             if (args.Length == 3 && args[0] == "-d")
             {
                 var (inputFile, outputFile) = (args[1], args[2]);
-                
                 if (File.Exists(inputFile))
                 {
+                    System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+                    stopwatch.Start();
+
                     Decompress(inputFile, outputFile);
+
+                    stopwatch.Stop();
+                    Console.WriteLine(stopwatch.ElapsedMilliseconds);
                     return;
                 }
             }
-            
+
             ShowUsage();
         }
 
